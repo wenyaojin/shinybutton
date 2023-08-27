@@ -1,7 +1,9 @@
 import React from 'react';
+import { useStyles } from './shinyButton.styles';
 
-export function ShinyButton(): JSX.Element {
+export function ShinyButton(props: any): JSX.Element {
   const reflectionRef = React.useRef(null);
+  const styles = useStyles();
   React.useEffect(() => {
     if (reflectionRef.current) {
       navigator.mediaDevices.getUserMedia({
@@ -23,8 +25,11 @@ export function ShinyButton(): JSX.Element {
   
   
   return (
-    <div>
-      <video ref={reflectionRef}></video>
+    <div className={styles.container}>
+      {/* <div className={styles.detailContainer}> */}
+        <video className={styles.video} ref={reflectionRef}></video>
+        <div className={styles.text}>{props.children}</div>
+      {/* </div> */}
     </div>
   )
 }
